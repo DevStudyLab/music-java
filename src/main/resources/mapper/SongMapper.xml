@@ -1,0 +1,91 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.nbpt.music.mapper.SongMapper">
+    <select id="list" resultType="cn.edu.nbpt.music.pojo.entity.Song">
+        select * from song
+        <where>
+            <if test="id!= null and id != ''">
+                id = #{id}
+            </if>
+            <if test="name!= null and name != ''">
+                and name like concat('%',#{name},'%')
+            </if>
+            <if test="singer != null and singer != ''">
+                and singer like concat('%',#{singer},'%')
+            </if>
+            <if test="hot != null and hot != ''">
+                and hot = #{hot}
+            </if>
+        </where>
+    </select>
+
+    <insert id="add">
+        insert into song
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null and name != ''">
+                name,
+            </if>
+            <if test="singer != null and singer != ''">
+                singer,
+            </if>
+            <if test="type != null and type != ''">
+                type,
+            </if>
+            <if test="content != null and content != ''">
+                content,
+            </if>
+            <if test="hot != null and hot != ''">
+                hot,
+            </if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null and name != ''">
+                #{name},
+            </if>
+            <if test="singer != null and singer != ''">
+                #{singer},
+            </if>
+            <if test="type != null and type != ''">
+                #{type},
+            </if>
+            <if test="content != null and content != ''">
+                #{content},
+            </if>
+            <if test="hot != null and hot != ''">
+                #{hot},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="update">
+        update song
+        <set>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="singer != null and singer != ''">
+                singer = #{singer},
+            </if>
+            <if test="type != null and type != ''">
+                type = #{type},
+            </if>
+            <if test="content != null and content != ''">
+                content = #{content},
+            </if>
+            <if test="hot != null and hot != ''">
+                hot = #{hot},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="delete">
+        delete from song
+        where id in
+        <foreach collection="ids" item="ids" open="(" close=")" separator=",">
+            #{ids}
+        </foreach>
+    </delete>
+</mapper>
