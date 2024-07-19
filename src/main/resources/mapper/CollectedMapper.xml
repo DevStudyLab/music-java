@@ -1,0 +1,67 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.nbpt.music.mapper.CollectedMapper">
+
+    <resultMap id="collectMap" type="cn.edu.nbpt.music.pojo.entity.Collected">
+        <id property="id" column="id"/>
+        <result property="songId" column="song_id"/>
+        <result property="createTime" column="create_time"/>
+    </resultMap>
+
+    <resultMap id="songMap" type="cn.edu.nbpt.music.pojo.entity.Song">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="singer" column="singer"/>
+        <result property="type" column="type"/>
+        <result property="content" column="content"/>
+        <result property="hot" column="hot"/>
+    </resultMap>
+
+    <resultMap id="collectedSongMap" type="cn.edu.nbpt.music.pojo.vo.CollectedSongVo" extends="collectMap">
+        <association property="song" resultMap="songMap"/>
+    </resultMap>
+
+    <select id="list" resultMap="collectedSongMap">
+        select * from collected
+        left outer join song on collected.song_id = song.id
+        <where>
+            <if test="id != null">
+                id = #{id}
+            </if>
+            <if test="songId != null">
+                and song_id = #{songId}
+            </if>
+        </where>
+    </select>
+
+    <insert id="add">
+        insert into collected
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="songId != null and songId != ''">
+                song_id,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="songId != null and songId != ''">
+                #{songId},
+            </if>
+            <if test="createTime != null">
+                #{createTime},
+            </if>
+        </trim>
+    </insert>
+
+    <delete id="delete">
+        delete from collected
+        where id in
+        <foreach collection="ids" item="ids" open="(" close=")" separator=",">
+            #{ids}
+        </foreach>
+    </delete>
+
+</mapper>

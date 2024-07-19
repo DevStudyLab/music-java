@@ -12,6 +12,8 @@ public enum ErrorCode {
     SUCCESS(200, "操作成功"),
     ERROR(500, "操作失败"),
     INSERT_ERROR(501, "插入失败"),
+    INSERT_NOT_FIND_ERROR(50101, "收藏歌曲不存在"),
+    INSERT_EXIST_ERROR(50102, "目标歌曲已收藏"),
     UPDATE_ERROR(502, "更新失败"),
     DELETE_ERROR(503, "删除失败"),
     SELECT_ERROR(504, "查询失败"),
