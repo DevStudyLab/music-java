@@ -10,7 +10,7 @@ public class MusicApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(MusicApplication.class, args);
-        log.info("某音APP后台管理系统，启动！");
+        log.info("音渊APP后台，启动！");
     }
 
 }
