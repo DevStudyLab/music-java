@@ -12,14 +12,16 @@ public enum ErrorCode {
     SUCCESS(200, "操作成功"),
     ERROR(500, "操作失败"),
     INSERT_ERROR(501, "插入失败"),
-    INSERT_NOT_FIND_ERROR(50101, "收藏歌曲不存在"),
-    INSERT_EXIST_ERROR(50102, "目标歌曲已收藏"),
-    USER_NOT_EXIST(50103, "用户不存在"),
     UPDATE_ERROR(502, "更新失败"),
     DELETE_ERROR(503, "删除失败"),
     SELECT_ERROR(504, "查询失败"),
     FILE_OPERATE_ERROR(505, "文件操作失败"),
     PARAMETER_VALIDATE_ERROR(509, "参数校验失败"),
+    INSERT_NOT_FIND_ERROR(50001, "收藏歌曲不存在"),
+    INSERT_EXIST_ERROR(50002, "目标歌曲已存在"),
+    USER_NOT_EXIST(50003, "用户不存在"),
+    MENU_NOT_EXIST(50004, "目标歌单不存在"),
+    SONG_NOT_EXIST(50004, "目标歌曲不存在"),
     TOKEN_INVALIDATE(50008, "token失效");
 
     private final Integer code;

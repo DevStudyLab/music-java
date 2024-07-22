@@ -3,6 +3,7 @@ package cn.edu.nbpt.music.controller;
 import cn.edu.nbpt.music.pojo.Page;
 import cn.edu.nbpt.music.pojo.Result;
 import cn.edu.nbpt.music.pojo.entity.Menu;
+import cn.edu.nbpt.music.pojo.vo.MenuSongVo;
 import cn.edu.nbpt.music.pojo.vo.MenuUserVo;
 import cn.edu.nbpt.music.service.MenuService;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -37,9 +38,27 @@ public class MenuController {
         return Result.success(menuService.list(id, name, userId, startTime, endTime, pageNum, pageSize));
     }
 
+    @GetMapping("/detail")
+    public Result<Page<MenuSongVo>> detail(
+            @RequestParam Integer menuId,
+            @RequestParam(required = false) Integer songId,
+            @RequestParam(required = false, defaultValue = "1") Integer pageNum,
+            @RequestParam(required = false, defaultValue = "10") Integer pageSize
+    ) {
+        return Result.success(menuService.detail(menuId, songId, pageNum, pageSize));
+    }
+
     @PostMapping
     public Result<Integer> add(@RequestBody Menu menu) {
         return Result.success(menuService.add(menu));
+    }
+
+    @PostMapping("/detail/{songIds}")
+    public Result<Integer> addSongs(
+            @PathVariable List<Integer> songIds,
+            @RequestParam Integer menuId
+    ) {
+        return Result.success(menuService.addSongs(songIds, menuId));
     }
 
     @PutMapping
@@ -52,4 +71,10 @@ public class MenuController {
         return Result.success(menuService.delete(ids));
     }
 
+    @DeleteMapping("/detail/{ids}")
+    public Result<Integer> deleteSongs(
+            @PathVariable List<Integer> ids,
+            @RequestParam Integer menuId) {
+        return Result.success(menuService.deleteSongs(ids, menuId));
+    }
 }

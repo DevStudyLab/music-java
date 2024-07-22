@@ -30,7 +30,7 @@
         left join user on menu.user_id = user.id
         <where>
             <if test="id != null">
-                id = #{id}
+                menu.id = #{id}
             </if>
             <if test="name != null and name != ''">
                 and name like concat('%',#{name},'%')
