@@ -19,4 +19,6 @@ public interface CollectedMapper {
     Integer add(Collected collected);
 
     Integer delete(@Param("ids") List<Integer> ids);
+
+    Integer deleteAll();
 }

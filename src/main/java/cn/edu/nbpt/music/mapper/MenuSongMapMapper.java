@@ -19,4 +19,6 @@ public interface MenuSongMapMapper {
     Integer add(MenuSongMap menuSongMap);
 
     Integer delete(@Param("ids") List<Integer> ids, @Param("menuId") Integer menuId);
+
+    Integer deleteAll(@Param("menuId") Integer menuId);
 }

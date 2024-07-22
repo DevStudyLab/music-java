@@ -64,4 +64,9 @@
         </foreach>
     </delete>
 
+    <delete id="deleteAll">
+        delete
+        from collected
+    </delete>
+
 </mapper>

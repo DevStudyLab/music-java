@@ -51,4 +51,10 @@
         and menu_id = #{menuId}
     </delete>
 
+    <delete id="deleteAll">
+        delete
+        from menu_song_map
+        where menu_id = #{menuId}
+    </delete>
+
 </mapper>

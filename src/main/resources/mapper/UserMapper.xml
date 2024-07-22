@@ -5,8 +5,11 @@
     <select id="list" resultType="cn.edu.nbpt.music.pojo.entity.User">
         select * from user
         <where>
-            <if test="id!= null and id != ''">
+            <if test="id!= null">
                 id = #{id}
+            </if>
+            <if test="gender != null and gender != ''">
+                and gender = #{gender}
             </if>
             <if test="username != null and username != ''">
                 and username like concat('%',#{username},'%')

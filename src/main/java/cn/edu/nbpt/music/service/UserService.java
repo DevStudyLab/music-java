@@ -12,7 +12,7 @@ import java.util.List;
  * @Description:
  */
 public interface UserService {
-    Page<User> list(Integer id, String username, Integer pageNum, Integer pageSize);
+    Page<User> list(Integer id, String gender, String username, Integer pageNum, Integer pageSize);
 
     Integer add(User user);
 

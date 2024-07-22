@@ -14,7 +14,9 @@ import java.util.List;
  */
 @Mapper
 public interface UserMapper {
-    List<User> list(@Param("id") Integer id, @Param("username") String username);
+    List<User> list(@Param("id") Integer id,
+                    @Param("gender") String gender,
+                    @Param("username") String username);
 
     Integer update(User user);
 

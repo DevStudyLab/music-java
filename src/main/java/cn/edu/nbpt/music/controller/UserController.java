@@ -25,11 +25,12 @@ public class UserController {
     @GetMapping
     public Result<Page<User>> list(
             @RequestParam(required = false) Integer id,
+            @RequestParam(required = false) String gender,
             @RequestParam(required = false) String username,
             @RequestParam(required = false, defaultValue = "1") Integer pageNum,
             @RequestParam(required = false, defaultValue = "10") Integer pageSize
     ) {
-        return Result.success(userService.list(id, username, pageNum, pageSize));
+        return Result.success(userService.list(id, gender, username, pageNum, pageSize));
     }
 
     @PostMapping

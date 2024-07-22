@@ -128,8 +128,14 @@ public class MenuServiceImpl implements MenuService {
         return updateRow;
     }
 
+    @Transactional
     @Override
     public Integer delete(List<Integer> ids) {
+        // 先删除歌单map表的记录
+        ids.forEach(item -> {
+            menuSongMapMapper.deleteAll(item);
+        });
+
         Integer deleteRow = menuMapper.delete(ids);
         if (deleteRow == 0) throw new BizException(ErrorCode.DELETE_ERROR);
         return deleteRow;
@@ -150,7 +156,7 @@ public class MenuServiceImpl implements MenuService {
      * 校验用户是否存在
      */
     private void userExists(Integer userId) {
-        List<User> list = userMapper.list(userId, null);
+        List<User> list = userMapper.list(userId, null, null);
         if (list.isEmpty()) throw new BizException(ErrorCode.USER_NOT_EXIST);
     }
 
