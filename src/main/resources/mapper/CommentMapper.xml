@@ -1,0 +1,105 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.nbpt.music.mapper.CommentMapper">
+    <resultMap id="commentMap" type="cn.edu.nbpt.music.pojo.entity.Comment">
+        <id property="id" column="id"/>
+        <result property="content" column="content"/>
+        <result property="itId" column="it_id"/>
+        <result property="songId" column="song_id"/>
+        <result property="userId" column="user_id"/>
+    </resultMap>
+
+    <resultMap id="userMap" type="cn.edu.nbpt.music.pojo.entity.User">
+        <id property="id" column="user_id"/>
+        <result property="username" column="username"/>
+        <result property="email" column="email"/>
+        <result property="gender" column="gender"/>
+        <result property="age" column="age"/>
+        <result property="avatar" column="avatar"/>
+    </resultMap>
+
+    <resultMap id="commentUserMap" type="cn.edu.nbpt.music.pojo.vo.CommentUserVo" extends="commentMap">
+        <association property="user" resultMap="userMap"/>
+    </resultMap>
+
+    <select id="list" resultMap="commentUserMap">
+        select * from comment
+        left join user on user.id = comment.user_id
+        <where>
+            <if test="id != null">
+                comment.id = #{id}
+            </if>
+            <if test="itId != null">
+                and comment.it_id = #{itId}
+            </if>
+            <if test="songId != null">
+                and comment.song_id = #{songId}
+            </if>
+            <if test="userId != null">
+                and user.id = #{userId}
+            </if>
+        </where>
+    </select>
+
+    <insert id="add">
+        insert into comment
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="content != null and content != ''">
+                content,
+            </if>
+            <if test="itId != null">
+                it_id,
+            </if>
+            <if test="songId != null">
+                song_id,
+            </if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                #{userId},
+            </if>
+            <if test="content != null and content != ''">
+                #{content},
+            </if>
+            <if test="itId != null">
+                #{itId},
+            </if>
+            <if test="songId != null">
+                #{songId},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="update">
+        update comment
+        <set>
+            <if test="userId != null">
+                user_id = #{userId},
+            </if>
+            <if test="content != null and content != ''">
+                content = #{content},
+            </if>
+            <if test="itId != null">
+                it_id = #{itId},
+            </if>
+            <if test="songId != null">
+                song_id = #{songId},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="delete">
+        delete from comment
+        where id in
+        <foreach collection="ids" item="ids" open="(" close=")" separator=",">
+            #{ids}
+        </foreach>
+    </delete>
+
+</mapper>
