@@ -3,6 +3,7 @@ package cn.edu.nbpt.music.controller;
 import cn.edu.nbpt.music.pojo.Page;
 import cn.edu.nbpt.music.pojo.Result;
 import cn.edu.nbpt.music.pojo.entity.Comment;
+import cn.edu.nbpt.music.pojo.vo.CommentSongVo;
 import cn.edu.nbpt.music.pojo.vo.CommentUserVo;
 import cn.edu.nbpt.music.service.CommentService;
 import org.springframework.web.bind.annotation.*;
@@ -35,7 +36,7 @@ public class CommentController {
     }
 
     @GetMapping("/mine")
-    public Result<Page<Comment>> mineList(
+    public Result<Page<CommentSongVo>> mineList(
             @RequestParam(required = false) Integer id,
             @RequestParam(required = false) Integer itId,
             @RequestParam(required = false) Integer songId,

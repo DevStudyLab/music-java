@@ -23,6 +23,10 @@
         <association property="user" resultMap="userMap"/>
     </resultMap>
 
+    <resultMap id="CommentSongMap" type="cn.edu.nbpt.music.pojo.vo.CommentSongVo" extends="commentMap">
+        <result property="name" column="name"/>
+    </resultMap>
+
     <select id="list" resultMap="commentUserMap">
         select * from comment
         left join user on user.id = comment.user_id
@@ -42,17 +46,18 @@
         </where>
     </select>
 
-    <select id="mineList" resultType="cn.edu.nbpt.music.pojo.entity.Comment">
+    <select id="mineList" resultMap="CommentSongMap">
         select * from comment
+        left join song on song.id = comment.song_id
         <where>
             <if test="id != null">
-                id = #{id}
+                comment.id = #{id}
             </if>
             <if test="itId != null">
                 and it_id = #{itId}
             </if>
             <if test="songId != null">
-                and song_id = #{songId}
+                and comment.song_id = #{songId}
             </if>
             <if test="userId != null">
                 and user_id = #{userId}

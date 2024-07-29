@@ -5,6 +5,7 @@ import cn.edu.nbpt.music.mapper.CommentMapper;
 import cn.edu.nbpt.music.pojo.ErrorCode;
 import cn.edu.nbpt.music.pojo.Page;
 import cn.edu.nbpt.music.pojo.entity.Comment;
+import cn.edu.nbpt.music.pojo.vo.CommentSongVo;
 import cn.edu.nbpt.music.pojo.vo.CommentUserVo;
 import cn.edu.nbpt.music.service.CommentService;
 import com.github.pagehelper.PageHelper;
@@ -36,9 +37,9 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public Page<Comment> mineList(Integer id, Integer itId, Integer songId, Integer userId, Integer pageNum, Integer pageSize) {
+    public Page<CommentSongVo> mineList(Integer id, Integer itId, Integer songId, Integer userId, Integer pageNum, Integer pageSize) {
         PageHelper.startPage(pageNum, pageSize);
-        List<Comment> list = commentMapper.mineList(id, itId, songId, userId);
+        List<CommentSongVo> list = commentMapper.mineList(id, itId, songId, userId);
         return Page.page(list);
     }
 
