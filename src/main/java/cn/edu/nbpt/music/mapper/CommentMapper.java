@@ -19,6 +19,11 @@ public interface CommentMapper {
                              @Param("songId") Integer songId,
                              @Param("userId") Integer userId);
 
+    List<Comment> mineList(@Param("id") Integer id,
+                           @Param("itId") Integer itId,
+                           @Param("songId") Integer songId,
+                           @Param("userId") Integer userId);
+
     Integer add(Comment comment);
 
     Integer update(Comment comment);

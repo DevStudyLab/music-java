@@ -36,6 +36,13 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
+    public Page<Comment> mineList(Integer id, Integer itId, Integer songId, Integer userId, Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        List<Comment> list = commentMapper.mineList(id, itId, songId, userId);
+        return Page.page(list);
+    }
+
+    @Override
     public Integer add(Comment comment) {
         Integer addRow = commentMapper.add(comment);
         if (addRow == 0) throw new BizException(ErrorCode.INSERT_ERROR);

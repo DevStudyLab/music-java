@@ -34,6 +34,18 @@ public class CommentController {
         return Result.success(commentService.list(id, itId, songId, userId, pageNum, pageSize));
     }
 
+    @GetMapping("/mine")
+    public Result<Page<Comment>> mineList(
+            @RequestParam(required = false) Integer id,
+            @RequestParam(required = false) Integer itId,
+            @RequestParam(required = false) Integer songId,
+            @RequestParam(required = false) Integer userId,
+            @RequestParam(required = false, defaultValue = "1") Integer pageNum,
+            @RequestParam(required = false, defaultValue = "10") Integer pageSize
+    ) {
+        return Result.success(commentService.mineList(id, itId, songId, userId, pageNum, pageSize));
+    }
+
     @PostMapping
     public Result<Integer> add(@RequestBody Comment comment) {
         return Result.success(commentService.add(comment));

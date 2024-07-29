@@ -42,6 +42,24 @@
         </where>
     </select>
 
+    <select id="mineList" resultType="cn.edu.nbpt.music.pojo.entity.Comment">
+        select * from comment
+        <where>
+            <if test="id != null">
+                id = #{id}
+            </if>
+            <if test="itId != null">
+                and it_id = #{itId}
+            </if>
+            <if test="songId != null">
+                and song_id = #{songId}
+            </if>
+            <if test="userId != null">
+                and user_id = #{userId}
+            </if>
+        </where>
+    </select>
+
     <insert id="add">
         insert into comment
         <trim prefix="(" suffix=")" suffixOverrides=",">

@@ -14,6 +14,8 @@ import java.util.List;
 public interface CommentService {
     Page<CommentUserVo> list(Integer id, Integer itId, Integer songId, Integer userId, Integer pageNum, Integer pageSize);
 
+    Page<Comment> mineList(Integer id, Integer itId, Integer songId, Integer userId, Integer pageNum, Integer pageSize);
+
     Integer add(Comment comment);
 
     Integer update(Comment comment);
