@@ -28,7 +28,7 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public Page<CommentUserVo> list(Integer id, Integer itId, Integer songId, Integer userId, Integer pageNum, Integer pageSize) {
         PageHelper.startPage(pageNum, pageSize);
-        List<CommentUserVo> list = commentMapper.list(id, 0, songId, userId);
+        List<CommentUserVo> list = commentMapper.list(id, itId, songId, userId);
         list.forEach(item -> {
             item.getUser().setPassword("保密");
             item.setChildComments(getChildComment(item.getId()));
