@@ -80,7 +80,8 @@
                 <version>${spring-boot.version}</version>
                 <configuration>
                     <mainClass>cn.edu.nbpt.music.MusicApplication</mainClass>
-                    <skip>true</skip>
+                    <!-- <skip>true</skip> -->
+                    <skip>false</skip>
                 </configuration>
                 <executions>
                     <execution>

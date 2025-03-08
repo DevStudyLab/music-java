@@ -89,4 +89,63 @@ public class FileController {
             throw new BizException(ErrorCode.FILE_OPERATE_ERROR);
         }
     }
+
+    @GetMapping("stream/{fileName}")
+    public void streamAudio(
+            @PathVariable String fileName,
+            HttpServletResponse response
+    ) {
+        File targetFile = new File(this.storageDir, fileName);
+        if (!targetFile.exists()) {
+            throw new BizException(ErrorCode.FILE_OPERATE_ERROR);
+        }
+
+        String rangeHeader = response.getHeader("Range");
+        long fileLength = targetFile.length();
+
+        // 设置响应头
+        response.setContentType("audio/mpeg");
+        response.setHeader("Accept-Ranges", "bytes");
+
+        try {
+            if (rangeHeader != null && rangeHeader.startsWith("bytes=")) {
+                // 处理断点续传
+                String[] ranges = rangeHeader.substring(6).split("-");
+                long start = Long.parseLong(ranges[0]);
+                long end = ranges.length > 1 && !ranges[1].isEmpty() ? 
+                          Long.parseLong(ranges[1]) : fileLength - 1;
+
+                response.setStatus(HttpServletResponse.SC_PARTIAL_CONTENT);
+                response.setHeader("Content-Range", "bytes " + start + "-" + end + "/" + fileLength);
+                response.setHeader("Content-Length", String.valueOf(end - start + 1));
+
+                try (FileInputStream fis = new FileInputStream(targetFile)) {
+                    fis.skip(start);
+                    byte[] buffer = new byte[1024];
+                    long remaining = end - start + 1;
+                    int bytesRead;
+
+                    while (remaining > 0 && (bytesRead = fis.read(buffer, 0, (int) Math.min(buffer.length, remaining))) != -1) {
+                        response.getOutputStream().write(buffer, 0, bytesRead);
+                        remaining -= bytesRead;
+                    }
+                }
+            } else {
+                // 完整文件传输
+                response.setHeader("Content-Length", String.valueOf(fileLength));
+                try (BufferedInputStream inputStream = new BufferedInputStream(Files.newInputStream(targetFile.toPath()));
+                     ServletOutputStream outputStream = response.getOutputStream()) {
+                    byte[] buffer = new byte[1024];
+                    int bytesRead;
+                    while ((bytesRead = inputStream.read(buffer)) != -1) {
+                        outputStream.write(buffer, 0, bytesRead);
+                    }
+                    outputStream.flush();
+                }
+            }
+        } catch (Exception e) {
+            throw new BizException(ErrorCode.FILE_OPERATE_ERROR);
+        }
+    }
+
 }
