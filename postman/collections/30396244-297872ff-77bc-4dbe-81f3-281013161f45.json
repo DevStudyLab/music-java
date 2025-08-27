@@ -1,0 +1,833 @@
+{
+	"info": {
+		"_postman_id": "30396244-297872ff-77bc-4dbe-81f3-281013161f45",
+		"name": "music",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "file",
+			"item": [
+				{
+					"name": "upload",
+					"id": "30396244-a87f8045-b0eb-4c3e-a1ed-26dc7b94397d",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/D:/wer/DeskData/music.mp3"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8080/music/file/upload",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"music",
+								"file",
+								"upload"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "download",
+					"id": "30396244-3457ef22-0ff6-4590-b40c-a79273222f63",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/music/file/download/屏幕截图(2)_69bb9270-0e01-43fe-bb11-70725ae598b4.png/IMAGE",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"music",
+								"file",
+								"download",
+								"屏幕截图(2)_69bb9270-0e01-43fe-bb11-70725ae598b4.png",
+								"IMAGE"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "stream",
+					"id": "30396244-27d5850c-199e-4090-9796-e6d8e65f3d97",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "30396244-023032db-5bd1-489b-928c-7749af1e59c5"
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "list",
+					"id": "30396244-d37bc442-fdf9-4c1a-b7c2-280608fa38b9",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/music/user",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"music",
+								"user"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "username",
+									"value": "c",
+									"disabled": true
+								},
+								{
+									"key": "gender",
+									"value": "男",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add",
+					"id": "30396244-307da7fd-a7e1-4951-94a2-40d3c2789c2f",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"cs\",\r\n    \"password\": \"cs\",\r\n    \"email\": \"cs@qq.com\",\r\n    \"gender\": \"男\",\r\n    \"age\": \"22\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/music/user",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"music",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"id": "30396244-0787021a-48f8-4ab2-8eed-d2b19040c67a",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 3,\r\n    \"username\": \"user2\",\r\n    \"password\": \"123456\",\r\n    \"email\": \"email@126.com\",\r\n    \"gender\": \"女\",\r\n    \"age\": 20,\r\n    \"avatar\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/music/user",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"music",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"id": "30396244-69cc5417-3531-4362-b202-262c3447dc2a",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/music/user/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"music",
+								"user",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "30396244-aad471f4-68d1-420f-a7cf-ca8b57e127fa"
+		},
+		{
+			"name": "song",
+			"item": [
+				{
+					"name": "list",
+					"id": "30396244-5f64c614-7853-47be-ada7-2d404da6eba7",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/music/song",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"music",
+								"song"
+							],
+							"query": [
+								{
+									"key": "pageSize",
+									"value": "1",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "pageNum",
+									"value": "2",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add",
+					"id": "30396244-40ccf9e8-a551-4b2e-812b-47c5ceaf07a4",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"cs\",\r\n    \"singer\": \"singer\",\r\n    \"type\": \"cs\",\r\n    \"content\": \"cscscscscscscs\",\r\n    \"hot\": \"否\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/music/song",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"music",
+								"song"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"id": "30396244-ac4371f3-0277-4240-8e4c-e7a5984de5d4",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":\"3\",\r\n    \"name\": \"cs333\",\r\n    \"singer\": \"singer333\",\r\n    \"type\": \"cs333\",\r\n    \"content\": \"/music/file/download/music_90829783-90bc-42f5-81db-2e5537c91b54.mp3/DOCUMENT\",\r\n    \"hot\": \"是\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/music/song",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"music",
+								"song"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"id": "30396244-aee50032-7686-4113-9f6c-46a0f23d8a18",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/music/song/3,4",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"music",
+								"song",
+								"3,4"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "30396244-2e6c3574-9312-4f39-a569-742660abc72d"
+		},
+		{
+			"name": "collected",
+			"item": [
+				{
+					"name": "list",
+					"id": "30396244-919a8fbc-0147-4faa-b5fa-9f6389c55b76",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/music/collected?userId=2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"music",
+								"collected"
+							],
+							"query": [
+								{
+									"key": "songId",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "userId",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add",
+					"id": "30396244-8a5a3cf7-c0e8-4a2c-b6b2-97e2d5695f0e",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"songId\": 3,\r\n    \"userId\":2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/music/collected",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"music",
+								"collected"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"id": "30396244-099ea379-d858-494c-98fb-f2508590b69a",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/music/collected/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"music",
+								"collected",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "30396244-dd1033c0-309a-47da-b44d-0bd12dd7cd99"
+		},
+		{
+			"name": "menu",
+			"item": [
+				{
+					"name": "detail",
+					"item": [
+						{
+							"name": "detail",
+							"id": "30396244-bc101629-73de-47fe-9320-6e46e8b99ed7",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/music/menu/detail?menuId=1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"music",
+										"menu",
+										"detail"
+									],
+									"query": [
+										{
+											"key": "menuId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addSongs",
+							"id": "30396244-4cb4e91d-e1cf-4ca2-8b3d-82e433f6d08d",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/music/menu/detail/4?menuId=1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"music",
+										"menu",
+										"detail",
+										"4"
+									],
+									"query": [
+										{
+											"key": "menuId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteSongs",
+							"id": "30396244-5a5ae533-700d-49e7-a6f7-75d3ddba6bc8",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/music/menu/detail/2?menuId=1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"music",
+										"menu",
+										"detail",
+										"2"
+									],
+									"query": [
+										{
+											"key": "menuId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"id": "30396244-2c46652e-883e-49ac-b95c-e5962cedbb1c"
+				},
+				{
+					"name": "list",
+					"id": "30396244-49077858-ca59-43fd-a378-8fa63c8ea989",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/music/menu",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"music",
+								"menu"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "情",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "startTime",
+									"value": "2024-07-18 12:51:22",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add",
+					"id": "30396244-f0f52690-4fe7-4c89-9d6d-05566a10c77c",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"抒情2\",\r\n    \"image\": null,\r\n    \"description\": \"这是一个抒情的歌单集合\",\r\n    \"userId\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/music/menu",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"music",
+								"menu"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"id": "30396244-0d1e72b3-864b-41a7-ac98-c42cc1e3991d",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":\"3\",\r\n    \"name\": \"抒情5555\",\r\n    \"image\": null,\r\n    \"description\": \"这是一个抒情的歌单集合5555\",\r\n    \"createTime\": \"2024-07-18 12:51:22\",\r\n    \"userId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/music/menu",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"music",
+								"menu"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"id": "30396244-2e7eecf4-6af9-4f1b-b0ed-fb5666b9dc4b",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/music/menu/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"music",
+								"menu",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "30396244-d6681dd8-236a-4cf8-83a0-1088f16766fb"
+		},
+		{
+			"name": "comment",
+			"item": [
+				{
+					"name": "list",
+					"id": "30396244-a313c45b-b6ff-4397-bcc4-6ffa4f280ee6",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/music/comment?itId=0",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"music",
+								"comment"
+							],
+							"query": [
+								{
+									"key": "itId",
+									"value": "0",
+									"type": "text"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "mineList",
+					"id": "30396244-81b24bed-341a-45da-ba8c-40899082abce",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/music/comment/mine",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"music",
+								"comment",
+								"mine"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add",
+					"id": "30396244-62a0fdf5-aea3-47f1-b9fa-b6eae5111005",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"content\": \"水评论\",\r\n    \"itId\": 3,\r\n    \"songId\": 2,\r\n    \"userId\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/music/comment",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"music",
+								"comment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"id": "30396244-2927342c-c508-418a-9aee-75acb855d4ec",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":6,\r\n    \"content\": \"cs002222\",\r\n    \"itId\": 1,\r\n    \"songId\": 1,\r\n    \"userId\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/music/comment",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"music",
+								"comment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"id": "30396244-1509d45c-d6f7-453b-9171-29f284ce5c3f",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/music/comment/5,6,7",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"music",
+								"comment",
+								"5,6,7"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "30396244-c1983132-d33b-442a-892d-8547807d8a98"
+		}
+	]
+}
